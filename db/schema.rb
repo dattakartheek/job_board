@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922234801) do
+ActiveRecord::Schema.define(version: 20180601051715) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20170922234801) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_locations_on_region_id"
+  end
+
+  create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "job_postings", "categories"

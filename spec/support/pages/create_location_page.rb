@@ -2,9 +2,10 @@ module Pages
   class CreateLocationPage
     include Capybara::DSL
 
-    def fill_in_form(address_fields = {}, name: nil)
+    def fill_in_form(address_fields = {}, name: nil, region_name: nil)
       fill_in("Name", with: name) if name
       fill_in_address(address_fields)
+      select(region_name, from: "Region") if region_name
     end
 
     def submit

@@ -39,5 +39,10 @@
     <%= form.text_field(:zip_code, id: :location_zip_code, class: "form-control") %>
   </div>
 
+  <div class="field_with_errors">
+    <%= form.label(:region_id, for: :location_region) %>
+    <%= form.select(:region_id, Region.all.map { |region| [region.name, region.id] }, { prompt: "Region" }, { id: :location_region, class: "form-control" }) %>
+  </div>
+
   <%= form.submit action_name, class: "btn btn-default action-btn" %>
 <% end %>
