@@ -10,25 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922234801) do
+ActiveRecord::Schema.define(version: 20180601051715) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "job_posters", force: :cascade do |t|
+  create_table "job_posters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "job_postings", force: :cascade do |t|
+  create_table "job_postings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "location_id"
     t.bigint "category_id"
     t.bigint "job_poster_id"
@@ -43,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170922234801) do
     t.index ["location_id"], name: "index_job_postings_on_location_id"
   end
 
-  create_table "locations", force: :cascade do |t|
+  create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "street_address_1", null: false
     t.string "street_address_2"
     t.string "city", null: false
@@ -52,6 +49,14 @@ ActiveRecord::Schema.define(version: 20170922234801) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_locations_on_region_id"
+  end
+
+  create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "job_postings", "categories"

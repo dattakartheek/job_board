@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe Location, type: :model do
   it { should have_many :job_postings }
+  it { should belong_to :region }
 
   it { should validate_presence_of :name }
   it { should validate_presence_of :street_address_1 }

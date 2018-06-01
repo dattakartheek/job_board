@@ -8,6 +8,7 @@ RSpec.describe "Creating a location", type: :system do
   end
 
   scenario "Creating a valid location" do
+    region = create :region
     location = build :location,
       name: "TD Garden",
       street_address_1: "100 Legends Way",
@@ -29,7 +30,8 @@ RSpec.describe "Creating a location", type: :system do
         state: location.state,
         zip_code: location.zip_code
       },
-      name: location.name
+      name: location.name,
+      region_name: region.name
     )
     create_page.submit
 

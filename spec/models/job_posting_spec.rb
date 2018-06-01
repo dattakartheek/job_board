@@ -10,6 +10,7 @@ RSpec.describe JobPosting, type: :model do
   it { should define_enum_for(:status).with([:new_post, :pending, :complete]) }
 
   it { should validate_presence_of :title }
+  it { should validate_presence_of :description }
 
   describe "defaults" do
     subject(:posting) { build :job_posting }

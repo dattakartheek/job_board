@@ -5,5 +5,6 @@ FactoryBot.define do
     city "Boston"
     state "MA"
     zip_code "02108"
+    region
   end
 end
