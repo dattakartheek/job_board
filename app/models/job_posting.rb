@@ -13,6 +13,8 @@ class JobPosting < ApplicationRecord
 
   validates :title, presence: true
 
+  scope :by_created_at, lambda{ |date| where("CAST(created_at AS DATE) BETWEEN ? AND ?", date.beginning_of_day, date.end_of_day ) }
+
   after_initialize :set_defaults
 
   private
